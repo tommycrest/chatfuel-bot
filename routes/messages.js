@@ -5,6 +5,8 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
     console.log(req.body.messages);
     
+    requestToGoogle(req.body.messages);
+    
     res.send();
     res.end();
 });
