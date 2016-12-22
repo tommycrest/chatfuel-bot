@@ -67,7 +67,7 @@ function requestToWikipedia( lookingFor ) {
     
    var options = {
         host: 'en.wikipedia.org',
-        path: '/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content&callback=?'
+        path: '/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content'
    };
     
     
