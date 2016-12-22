@@ -82,7 +82,7 @@ function requestToWikipedia( lookingFor ) {
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
         console.log(str);
-        response.send(str);
+        //response.send(str);
     });
  }
 
