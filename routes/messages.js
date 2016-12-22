@@ -77,6 +77,7 @@ function requestToWikipedia( lookingFor ) {
     //another chunk of data has been recieved, so append it to 
     response.on('data', function (chunk) {
         str += chunk;
+        console.log('response ',str)
     });
 
     //the whole response has been recieved, so we just print it out here
