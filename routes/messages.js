@@ -13,6 +13,11 @@ router.post('/', function(req, res, next) {
     res.end();
 });
 
+router.get('/', function(req,res, next){
+    requestToWikipedia(req.body.messages);
+    res.end();
+});
+
 function escapeSpecialChars(str) { 
     return str.replace(/\\/g, "\\\\")
         .replace(/\n/g, "\\n")
