@@ -28,5 +28,4 @@ function escapeSpecialChars(str) {
         .replace(/\&/g, "\\&"); 
 } 
 
-
 module.exports = router;
