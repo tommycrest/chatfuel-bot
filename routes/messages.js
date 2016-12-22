@@ -60,14 +60,14 @@ function requestToGoogle(queryStr){
 };
 
 /**
-    var playListURL = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content&callback=?';
+    var playListURL = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Jimi_Hendrix';
 */
 
 function requestToWikipedia( lookingFor ) {
     
    var options = {
         host: 'en.wikipedia.org',
-        path: '/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content'
+        path: '/w/api.php?action=parse&format=json&prop=text&section=0&page=indonesia'
    };
     
     
