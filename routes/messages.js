@@ -7,8 +7,6 @@ var http = require('http');
 router.post('/', function(req, res, next) {
     console.log(req.body.messages);
     
-    //requestToWikipedia(req.body.messages);
-    
     res.send('');
     res.end();
 });
@@ -30,36 +28,5 @@ function escapeSpecialChars(str) {
         .replace(/\&/g, "\\&"); 
 } 
 
-/**
-    var playListURL = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Jimi_Hendrix';
-*/
-
-function requestToWikipedia( callback ) {
-   console.log('requestToWikipedia begin');
-    
-   return http.get({
-        host: 'en.wikipedia.org',
-        path: '/w/api.php?action=parse&format=json&prop=text&section=0&page=indonesia'
-    }, function(response) {
-        // Continuously update stream with data
-        var body = '';
-        console.log(response);
-        response.on('data', function(d) {
-            body += d;
-            console.log(d);
-        });
-        response.on('end', function() {
-
-            // Data reception is done, do whatever with it!
-            //var parsed = JSON.parse(body);
-            //console.log(body);
-            /*callback({
-                email: parsed.email,
-                password: parsed.pass
-            });*/
-        });
-    });
-    console.log('requestToWikipedia end');
-}
 
 module.exports = router;
