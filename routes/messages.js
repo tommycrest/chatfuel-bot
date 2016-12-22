@@ -7,14 +7,15 @@ var http = require('http');
 router.post('/', function(req, res, next) {
     console.log(req.body.messages);
     
-    requestToWikipedia(req.body.messages);
+    //requestToWikipedia(req.body.messages);
     
-    res.send();
+    res.send('');
     res.end();
 });
 
 router.get('/', function(req,res, next){
-    requestToWikipedia(req.body.messages);
+    //requestToWikipedia(req.body.messages);
+    res.send("{\"messages\": [ { \"attachment\": { \"type\": \"image\",\"payload\": {\"url\": \"https://petersapparel.parseapp.com/img/item101-thumb.png\" }}}]}");
     res.end();
 });
 
@@ -28,43 +29,6 @@ function escapeSpecialChars(str) {
         .replace(/'/g,"\\\'")
         .replace(/\&/g, "\\&"); 
 } 
-
-// metodo per effettuare la chiamata a google ed 
-// ottenere il json per la costruzione della risposta
-// http://www.google.it/search?q=post+su+google+con+express
-function requestToGoogle(queryStr){
-
-  console.log(queryStr);
-  var myJSON = JSON.stringify(queryStr);
-  var myEscapedJSONString = escapeSpecialChars(myJSON);
-    
-   console.log(myEscapedJSONString.substr(2,myEscapedJSONString.length-4));
-    
-   var options = {
-        host: 'www.google.it',
-        path: '/search?q='+myEscapedJSONString.substr(2,myEscapedJSONString.length-4).replace(/\ /g, "\+")
-   };
-    
-    
-   callback = function(response) {
-    var str = '';
-
-    //another chunk of data has been recieved, so append it to 
-    response.on('data', function (chunk) {
-        str += chunk;
-    });
-
-    //the whole response has been recieved, so we just print it out here
-    response.on('end', function () {
-        console.log(str);
-        response.send(str);
-    });
- }
-
-   http.request(options, callback).end();
-};
-
-
 
 /**
     var playListURL = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Jimi_Hendrix';
