@@ -59,35 +59,34 @@ function requestToGoogle(queryStr){
    http.request(options, callback).end();
 };
 
+
+
 /**
     var playListURL = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Jimi_Hendrix';
 */
 
-function requestToWikipedia( lookingFor ) {
+function requestToWikipedia( callback ) {
     
-   var options = {
+   return http.get({
         host: 'en.wikipedia.org',
         path: '/w/api.php?action=parse&format=json&prop=text&section=0&page=indonesia'
-   };
-    
-    
-   callback = function(response) {
-    var str = '';
+    }, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('data', function(d) {
+            body += d;
+        });
+        response.on('end', function() {
 
-    //another chunk of data has been recieved, so append it to 
-    response.on('data', function (chunk) {
-        str += chunk;
-        console.log('response ',str)
+            // Data reception is done, do whatever with it!
+            var parsed = JSON.parse(body);
+            console.log(parsed);
+            /*callback({
+                email: parsed.email,
+                password: parsed.pass
+            });*/
+        });
     });
-
-    //the whole response has been recieved, so we just print it out here
-    response.on('end', function () {
-        console.log(str);
-        //response.send(str);
-    });
- }
-
-   http.request(options, callback).end();
 }
 
 module.exports = router;
