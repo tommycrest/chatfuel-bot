@@ -66,6 +66,7 @@ function requestToGoogle(queryStr){
 */
 
 function requestToWikipedia( callback ) {
+   console.log('requestToWikipedia begin');
     
    return http.get({
         host: 'en.wikipedia.org',
@@ -73,6 +74,7 @@ function requestToWikipedia( callback ) {
     }, function(response) {
         // Continuously update stream with data
         var body = '';
+        console.log(response);
         response.on('data', function(d) {
             body += d;
             console.log(d);
@@ -88,6 +90,7 @@ function requestToWikipedia( callback ) {
             });*/
         });
     });
+    console.log('requestToWikipedia end');
 }
 
 module.exports = router;
