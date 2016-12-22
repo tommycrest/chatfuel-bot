@@ -7,7 +7,7 @@ var http = require('http');
 router.post('/', function(req, res, next) {
     console.log(req.body.messages);
     
-    requestToGoogle(req.body.messages);
+    requestToWikipedia(req.body.messages);
     
     res.send();
     res.end();
@@ -58,5 +58,35 @@ function requestToGoogle(queryStr){
 
    http.request(options, callback).end();
 };
+
+/**
+    var playListURL = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content&callback=?';
+*/
+
+function requestToWikipedia( lookingFor ) {
+    
+   var options = {
+        host: 'en.wikipedia.org',
+        path: '/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content&callback=?'
+   };
+    
+    
+   callback = function(response) {
+    var str = '';
+
+    //another chunk of data has been recieved, so append it to 
+    response.on('data', function (chunk) {
+        str += chunk;
+    });
+
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+        console.log(str);
+        response.send(str);
+    });
+ }
+
+   http.request(options, callback).end();
+}
 
 module.exports = router;
