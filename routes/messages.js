@@ -75,12 +75,13 @@ function requestToWikipedia( callback ) {
         var body = '';
         response.on('data', function(d) {
             body += d;
+            console.log(d);
         });
         response.on('end', function() {
 
             // Data reception is done, do whatever with it!
             //var parsed = JSON.parse(body);
-            console.log(body);
+            //console.log(body);
             /*callback({
                 email: parsed.email,
                 password: parsed.pass
